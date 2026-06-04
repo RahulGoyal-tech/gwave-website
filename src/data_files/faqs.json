@@ -1,29 +1,29 @@
 {
-  "subTitle": "Ask us anything about our brand and products, and get factual responses.",
+  "subTitle": "Everything you need to know about working with Gwave Innovation — from minimum orders to data confidentiality.",
   "faqs": [
     {
-      "question": "What types of tools are included in the Starter Kit?",
-      "answer": "The Starter Kit features essential hand and power tools for diverse DIY projects, including hammers, drills, screwdrivers, and a variety of fasteners. It's a curated selection to help beginners and experienced DIYers alike tackle most home improvement tasks."
+      "question": "What is the minimum order quantity?",
+      "answer": "There's no rigid minimum. We're set up to handle single-unit prototypes all the way to bulk production runs on the same standardized line, so you get consistent quality at any volume."
     },
     {
-      "question": "Can I upgrade from the Starter Kit to the Professional Toolbox?",
-      "answer": "Absolutely! You can upgrade to the Professional Toolbox at any time to access a wider range of high-quality tools, enjoy priority customer support, and receive exclusive content. Contact our support team for a seamless transition."
+      "question": "Do you source components and PCBs, or do I supply them?",
+      "answer": "Both. We offer full turnkey sourcing of components and bare PCBs, or we can assemble using parts and boards you supply (consignment). We'll recommend whichever fits your project."
     },
     {
-      "question": "What discounts are available for bulk orders through the Professional Toolbox plan?",
-      "answer": "Professional Toolbox members are entitled to exclusive discounts on bulk orders, the percentage of which may vary depending on the order volume. Get in touch with us to discuss your needs, and we'll provide a tailored discount structure."
+      "question": "Which services do you offer in-house?",
+      "answer": "Component sourcing, PCB sourcing, automated SMT pick-and-place assembly, manual assembly, board testing, IC programming, and box build assembly — plus plastic injection molding as a separate division."
     },
     {
-      "question": "What kind of customer support can I expect?",
-      "answer": "All our customers receive dedicated email support. With the Starter Kit, you'll receive our standard support, while the Professional Toolbox plan upgrades you to priority support, meaning faster response times and specialized assistance."
+      "question": "How do you ensure quality from prototype to bulk?",
+      "answer": "Every service runs on a documented standard operating procedure and uses specialized SMT equipment, so the same process produces the same result whether it's your first board or your ten-thousandth."
     },
     {
-      "question": "How current are the online resources and tutorials?",
-      "answer": "We regularly update our online resources and tutorials to reflect the latest trends in DIY and construction, as well as introductions to new tools and techniques. Our material aims to be comprehensive and user-friendly for all skill levels."
+      "question": "How do you protect my design data?",
+      "answer": "Your designs, BOMs, and production files are treated as confidential, with controlled access and version integrity throughout the job."
     },
     {
-      "question": "Does ScrewFast offer services for large-scale construction projects?",
-      "answer": "Yes, our Enterprise Solutions are designed for larger companies requiring comprehensive services. We provide consultation, planning, and supply of high-grade tools and materials, as well as staffing solutions for substantial construction needs. Contact us for a customized quote."
+      "question": "How do I get a quote?",
+      "answer": "Send us your requirements, BOM, and Gerber files through the contact page and our team will get back to you with a quotation and timeline."
     }
   ]
 }

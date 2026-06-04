@@ -1,6 +1,5 @@
 ---
 // Import the necessary dependencies.
-import AuthBtn from '@components/ui/buttons/AuthBtn.astro';
 import ContactIconBlock from '@components/ui/blocks/ContactIconBlock.astro';
 import TextInput from '@components/ui/forms/input/TextInput.astro';
 import EmailContactInput from '@components/ui/forms/input/EmailContactInput.astro';
@@ -8,12 +7,16 @@ import PhoneInput from '@components/ui/forms/input/PhoneInput.astro';
 import TextAreaInput from '@components/ui/forms/input/TextAreaInput.astro';
 import Icon from '@components/ui/icons/Icon.astro';
 
-// Define the variables that will be used in this component
-const title: string = 'Contact us';
+// Page copy
+const title: string = 'Get in Touch';
 const subTitle: string =
-  "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.";
-const formTitle: string = 'Fill in the form below';
-const formSubTitle: string = "We'll get back to you in 1-2 business days.";
+  'Have a project, a BOM, or just a question? Send us your requirements and our team will respond with a quote and timeline. We work with everyone from individual makers to established manufacturers.';
+const formTitle: string = 'Tell us about your project';
+const formSubTitle: string = "We'll get back to you within 1–2 business days.";
+
+// Submit button styling (matches the PrimaryCTA look)
+const submitClasses =
+  'group inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-orange-400 px-4 py-3 text-sm font-bold text-neutral-50 ring-zinc-500 transition duration-300 outline-hidden hover:bg-orange-500 focus-visible:ring-3 disabled:pointer-events-none disabled:opacity-50 2xl:text-base dark:ring-zinc-200 dark:focus:outline-hidden';
 ---
 
 {/* Contact Us */}
@@ -38,34 +41,46 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
           {formTitle}
         </h2>
         {
-          /* Form for user input with various input fields.-->
-        {/* Each field utilizes a different input component for the specific type of input (text, email, phone, and textarea)*/
+          /* Static sites need a form handler. This form is wired for Web3Forms:
+             1. Create a free access key at https://web3forms.com
+             2. Replace YOUR_WEB3FORMS_ACCESS_KEY below with it.
+             No backend code required. */
         }
-        <form>
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <input
+            type="hidden"
+            name="access_key"
+            value="YOUR_WEB3FORMS_ACCESS_KEY"
+          />
+          <input
+            type="hidden"
+            name="subject"
+            value="New project enquiry from gwaveinnovation.com"
+          />
           <div class="grid gap-4">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <TextInput
                 id="hs-firstname-contacts"
                 label="First Name"
-                name="hs-firstname-contacts"
+                name="first_name"
               />
               <TextInput
                 id="hs-lastname-contacts"
                 label="Last Name"
-                name="hs-lastname-contacts"
+                name="last_name"
               />
             </div>
             <EmailContactInput id="hs-email-contacts" />
             <PhoneInput id="hs-phone-number" />
             <TextAreaInput
               id="hs-about-contacts"
-              label="Details"
-              name="hs-about-contacts"
+              label="Project details (volume, services needed, timeline)"
+              name="message"
             />
           </div>
 
           <div class="mt-4 grid">
-            <AuthBtn title="Send Message" />
+            <button type="submit" class={submitClasses}>Send Message</button>
           </div>
 
           <div class="mt-3 text-center">
@@ -76,45 +91,38 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
         </form>
       </div>
 
-      {
-        /*ContactIconBlocks are used to display different methods of contacting, including visiting office, email, browsing knowledgebase, and FAQ.*/
-      }
+      {/* Direct contact methods */}
       <div class="divide-y divide-neutral-300 dark:divide-neutral-700">
         <ContactIconBlock
-          heading="Knowledgebase"
-          content="Browse through all of our knowledgebase articles."
+          heading="Email us your files"
+          content="To request a quote, email your BOM and Gerber files to"
           isLinkVisible={true}
-          linkTitle="Visit guides & tutorials"
-          linkURL="#"
-          isArrowVisible={true}
-          ><Icon name="question" />
+          linkTitle="[EMAIL]"
+          linkURL="mailto:[EMAIL]"
+          ><Icon name="envelopeOpen" />
         </ContactIconBlock>
 
         <ContactIconBlock
-          heading="FAQ"
-          content="Explore our FAQ for quick, clear answers to common queries."
+          heading="Call us"
+          content="Speak with our team directly during business hours"
           isLinkVisible={true}
-          linkTitle="Visit FAQ"
-          linkURL="#"
-          isArrowVisible={true}
+          linkTitle="[PHONE]"
+          linkURL="tel:[PHONE]"
           ><Icon name="chatBubble" />
         </ContactIconBlock>
 
         <ContactIconBlock
-          heading="Visit our office"
-          content="UK ScrewFast"
+          heading="Visit our facility"
+          content="Gwave Innovation Pvt. Ltd."
           isAddressVisible={true}
-          addressContent="72 Union Terrace, E10 4PE London"
+          addressContent="[ADDRESS, CITY, STATE PIN]"
           ><Icon name="mapPin" />
         </ContactIconBlock>
 
         <ContactIconBlock
-          heading="Contact us by email"
-          content="Prefer the written word? Drop us an email at"
-          isLinkVisible={true}
-          linkTitle="support@screwfast.uk"
-          linkURL="#"
-          ><Icon name="envelopeOpen" />
+          heading="Business hours"
+          content="[e.g. Mon–Sat, 9:30 AM – 6:30 PM]"
+          ><Icon name="question" />
         </ContactIconBlock>
       </div>
     </div>

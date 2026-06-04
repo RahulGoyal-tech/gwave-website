@@ -6,96 +6,20 @@ import LeftSection from '@components/ui/blocks/LeftSection.astro';
 import RightSection from '@components/ui/blocks/RightSection.astro';
 import FeaturesStats from '@components/sections/features/FeaturesStats.astro';
 
-// Import necessary images
+// Import imagery (swap these for your own line/PCB/molding photos)
 import blueprints from '@images/blueprints-image.avif';
 import personWorking from '@images/person-working.avif';
 import beforeAfter from '@images/before-after.avif';
 import constructionWorkers from '@images/construction-workers.avif';
 import aerialView from '@images/aerial-view.avif';
 import usingTools from '@images/using-tools.avif';
-import progressBuilding from '@images/progress-building.avif';
-import underConstruction from '@images/under-construction.avif';
 import { SITE } from '@data/constants';
-
-interface Article {
-  isRightSection: boolean;
-  title: string;
-  subTitle: string;
-  btnExists?: boolean;
-  btnTitle?: string;
-  btnURL?: string;
-  single?: boolean;
-  img?: any;
-  imgAlt?: string;
-  imgOne?: any;
-  imgOneAlt?: string;
-  imgTwo?: any;
-  imgTwoAlt?: string;
-}
-
-const articles: Article[] = [
-  {
-    isRightSection: true,
-    title: 'Delivering Expert Guidance',
-    subTitle:
-      'Embarking on a construction project can be overwhelming. With our professional consultation services, we guide you through every stage, ensuring you make informed decisions. Whether you are a DIY enthusiast or a skilled contractor, our experts are on hand to offer tailored advice on product selection, project scope, and compliance with local regulations.',
-    single: false,
-    imgOne: blueprints,
-    imgOneAlt: 'Blueprints and digital tablet with construction plans.',
-    imgTwo: personWorking,
-    imgTwoAlt: 'Person working in the office',
-  },
-  {
-    isRightSection: false,
-    title: 'Transforming Designs into Reality',
-    subTitle:
-      'Our skilled craftsmen bring precision and excellence to every construction project. From minor installations to substantial structural work, ScrewFast offers reliable construction services to turn your plans into tangible outcomes. We ensure the highest standards of safety and workmanship, utilizing top-quality tools and materials from our extensive inventory.',
-    img: beforeAfter,
-    imgAlt: 'Construction site before and after',
-    btnExists: true,
-    btnTitle: 'Learn More',
-    btnURL: '#',
-  },
-  {
-    isRightSection: true,
-    title: 'Navigating Projects with Professional Oversight',
-    subTitle:
-      'Effective project management is at the heart of any successful build. ScrewFast provides thorough planning and robust management services that keep your project on time and within budget. Let us handle the complexities of workflow coordination, resource allocation, and stakeholder communication while you focus on your vision.',
-    single: false,
-    imgOne: constructionWorkers,
-    imgOneAlt: 'Construction workers orchestrating a project',
-    imgTwo: aerialView,
-    imgTwoAlt: 'Aerial view of managed construction',
-  },
-  {
-    isRightSection: false,
-    title: 'Ensuring Long-lasting Performance',
-    subTitle:
-      "Our commitment to your project doesn't end at completion. ScrewFast offers ongoing maintenance and support services to ensure your construction's longevity and performance. From regular check-ups to emergency assistance, our responsive team is there to provide seamless support.",
-    img: usingTools,
-    imgAlt:
-      'Man in orange and black vest wearing white helmet holding yellow and black power tool',
-  },
-  {
-    isRightSection: true,
-    title: 'Crafting Bespoke Strategies for Unique Challenges',
-    subTitle:
-      'For our larger enterprise clients, ScrewFast offers custom solutions designed to meet specific industry challenges. By understanding your unique needs, we engineer tailored strategies aimed at optimizing your operations, enhancing efficiency, and driving your business forward.',
-    single: false,
-    imgOne: progressBuilding,
-    imgOneAlt: 'In progress building structure',
-    imgTwo: underConstruction,
-    imgTwoAlt: 'Brown and gray building under construction',
-    btnExists: true,
-    btnTitle: 'Read more',
-    btnURL: '#',
-  },
-];
 
 const pageTitle: string = `Services | ${SITE.title}`;
 const metaDescription =
-  'Uniting expertise with your vision, ScrewFast provides exceptional service and comprehensive solutions in the hardware and construction industry, from consultation to project completion.';
-const ogTitle = 'Expert Consultation Services | ScrewFast';
+  'Gwave Innovation provides end-to-end electronics manufacturing job work — component & PCB sourcing, SMT and manual assembly, board testing, IC programming, and box build — alongside precision plastic injection molding, all run on standardized processes.';
+const ogTitle =
+  'Electronics Manufacturing & Plastic Injection Services | Gwave Innovation';
 ---
 
 <MainLayout
@@ -105,87 +29,93 @@ const ogTitle = 'Expert Consultation Services | ScrewFast';
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://screwfast.uk/services',
-    url: 'https://screwfast.uk/services',
-    name: 'Expert Consultation Services | ScrewFast',
-    description:
-      'Uniting expertise with your vision, ScrewFast provides exceptional service and comprehensive solutions in the hardware and construction industry, from consultation to project completion.',
+    '@id': `${SITE.url}/services`,
+    url: `${SITE.url}/services`,
+    name: ogTitle,
+    description: metaDescription,
     isPartOf: {
       '@type': 'WebSite',
-      url: 'https://screwfast.uk',
-      name: 'ScrewFast',
-      description:
-        'ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs.',
+      url: SITE.url,
+      name: SITE.title,
+      description: SITE.description,
     },
     inLanguage: 'en-US',
   }}
 >
-  {
-    /* MainSection is the introductory section of the page, it also contains a CTA button */
-  }
+  {/* Page intro */}
   <MainSection
-    title="Uniting Expertise with Your Vision"
-    subTitle="At ScrewFast, we take pride in providing comprehensive solutions and exceptional service in the hardware and construction industry. Our experienced team is dedicated to supporting your project from inception to completion with a range of specialized services."
+    title="Our Services"
+    subTitle="Gwave Innovation provides end-to-end electronics manufacturing job work alongside plastic injection molding — all run on standardized, repeatable processes. Whether you need a handful of prototypes or a full production run, you get the same disciplined quality."
     btnExists={true}
-    btnTitle="Schedule a Consultation"
-    btnURL="#"
+    btnTitle="Request a Quote"
+    btnURL="/contact"
   />
-  {
-    /* RightSection and LeftSection contain details about various services along with pertinent imagery.
-  They alternate for variety in design.
-  The 'btnExists' property is used to toggle the display of a button in these sections.
-  When btnExists={true}, a button is displayed.
-  This can be used to link to more detailed information or related resources.
-  RightSection can also conditionally render one or two images based on the 'single' property.
-  If 'single' is true, it displays one image, otherwise it displays two.
-  */
-  }
-  {
-    articles.map(article => {
-      return article.isRightSection ? (
-        <RightSection
-          title={article.title}
-          subTitle={article.subTitle}
-          single={article.single}
-          imgOne={article.imgOne}
-          imgOneAlt={article.imgOneAlt}
-          imgTwo={article.imgTwo}
-          imgTwoAlt={article.imgTwoAlt}
-          btnExists={article.btnExists}
-          btnTitle={article.btnTitle}
-          btnURL={article.btnURL}
-        />
-      ) : (
-        <LeftSection
-          title={article.title}
-          subTitle={article.subTitle}
-          img={article.img}
-          imgAlt={article.imgAlt}
-          btnExists={article.btnExists}
-          btnTitle={article.btnTitle}
-          btnURL={article.btnURL}
-        />
-      );
-    })
-  }
-  {/* FeaturesStats section showcases essential stats valuable to users */}
+
+  {/* Division A — Electronics Manufacturing (PCBA Job Work) */}
+  <div id="electronics" class="scroll-mt-24">
+    <RightSection
+      title="Electronics Manufacturing — PCBA Job Work"
+      subTitle="Full turnkey PCB assembly under one roof. We source electronic components against your BOM with attention to authenticity and lead times, and procure bare boards to your exact specifications and quality standards — or assemble using parts you supply. Then our automated SMT pick-and-place lines place fine-pitch components with consistent accuracy at any volume, complemented by skilled manual assembly for through-hole, mixed-technology, and specialized parts."
+      single={false}
+      imgOne={blueprints}
+      imgOneAlt="Gerber files and BOM under review before component sourcing"
+      imgTwo={personWorking}
+      imgTwoAlt="Engineer preparing a job for the SMT assembly line"
+    />
+  </div>
+
+  {/* Testing, programming, box build */}
+  <div id="testing" class="scroll-mt-24">
+    <LeftSection
+      title="Testing, Programming & Box Build"
+      subTitle="We don't just populate boards — we verify and finish them. Functional and visual inspection confirms every board performs as intended before it ships. In-house IC and microcontroller programming means boards arrive ready to run. And full box build assembly — enclosures, wiring, and final integration — lets you ship a finished, verified product rather than just a populated PCB."
+      img={beforeAfter}
+      imgAlt="Technician performing functional board testing and final box build"
+      btnExists={true}
+      btnTitle="Discuss your build"
+      btnURL="/contact"
+    />
+  </div>
+
+  {/* Division B — Plastic Services */}
+  <div id="plastic" class="scroll-mt-24">
+    <RightSection
+      title="Plastic Injection Molding"
+      subTitle="Our plastic services division runs precision injection molding on standardized procedures for repeatable, high-quality parts and enclosures — ideal for the housings and components that pair with your electronics. Built to the same process discipline as our PCBA work, so the parts that protect your boards are held to the same standard as the boards themselves."
+      single={false}
+      imgOne={aerialView}
+      imgOneAlt="Plastic injection molding machine in operation"
+      imgTwo={usingTools}
+      imgTwoAlt="Inspection of a molded plastic enclosure"
+    />
+  </div>
+
+  {/* Closing standardization statement */}
+  <LeftSection
+    title="Standardized Today, Self-Serve Tomorrow"
+    subTitle="We're standardizing every one of these services into clear operating procedures — and moving toward a transparent, portal-based ordering experience so you always know exactly what to expect, from quote to delivery."
+    img={constructionWorkers}
+    imgAlt="Team documenting standardized operating procedures on the factory floor"
+  />
+
+  {/* Capability stats */}
   <FeaturesStats
-    title="By the Numbers"
-    subTitle="Our commitment to quality and reliability is evident in every project we undertake. At ScrewFast, we are dedicated to delivering industry-leading services that ensure your construction projects are built to last."
-    mainStatTitle="96%"
-    mainStatSubTitle="of our clients rate their experience with ScrewFast as exceptional"
+    title="Built for Consistency"
+    subTitle="Our commitment to process shows up in every job — the same disciplined quality whether it's your first board or your ten-thousandth."
+    mainStatTitle="8"
+    mainStatSubTitle="in-house services spanning electronics manufacturing and plastic injection"
     stats={[
       {
-        stat: '99.8%',
-        description: 'project completion rate',
+        stat: '1 → Bulk',
+        description: 'prototype through high-volume production',
       },
       {
-        stat: '5,000+',
-        description: 'successful installations',
+        stat: 'SMT',
+        description: 'automated pick-and-place for fine-pitch accuracy',
       },
       {
-        stat: '85%',
-        description: 'client growth year-over-year',
+        stat: '100%',
+        description: 'process-documented, inspection-backed workflow',
       },
     ]}
   />

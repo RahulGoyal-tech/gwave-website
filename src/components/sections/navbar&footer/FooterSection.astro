@@ -1,25 +1,15 @@
 ---
 // Import the necessary dependencies
 import FooterSocialLink from '@components/ui/links/FooterSocialLink.astro';
-import EmailFooterInput from '@components/ui/forms/input/EmailFooterInput.astro';
-import enStrings from '@utils/navigation.ts';
-import frStrings from '@utils/fr/navigation.ts';
 import Icon from '@components/ui/icons/Icon.astro';
 import BrandLogo from '@components/BrandLogo.astro';
+import enStrings from '@utils/navigation.ts';
 import { SITE } from '@data/constants';
 
-// Select the correct translation based on the page's lang prop:
-const strings = Astro.currentLocale === 'fr' ? frStrings : enStrings;
+const strings = enStrings;
 
-// Define the variables that will be used in this component
-const sectionThreeTitle: string =
-  Astro.currentLocale === 'fr' ? 'Rester à jour' : 'Stay up to date';
-const sectionThreeContent: string =
-  Astro.currentLocale === 'fr'
-    ? 'Restez informé des derniers outils et des offres exclusives.'
-    : 'Stay updated with the latest tools and exclusive deals.';
-const crafted: string =
-  Astro.currentLocale === 'fr' ? 'Fabriqué par' : 'Crafted by';
+// Tagline shown under the footer logo
+const tagline = SITE.tagline;
 ---
 
 <footer class="w-full bg-neutral-300 dark:bg-neutral-900">
@@ -27,11 +17,17 @@ const crafted: string =
     class="mx-auto w-full max-w-[85rem] px-4 py-10 sm:px-6 lg:px-16 lg:pt-20 2xl:max-w-(--breakpoint-2xl)"
   >
     <div class="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-5">
-      <div class="col-span-full lg:col-span-1">
+      <div class="col-span-full lg:col-span-2">
         {/* Brand Logo */}
-        <BrandLogo class="h-auto w-32" />
+        <BrandLogo class="h-auto w-44" />
+        <p
+          class="mt-4 max-w-xs text-sm text-pretty text-neutral-600 dark:text-neutral-400"
+        >
+          {tagline}. End-to-end PCBA job work and plastic injection molding —
+          from prototype to bulk, built on standardized, repeatable processes.
+        </p>
       </div>
-      {/* An array of links for Product and Company sections */}
+      {/* An array of links for Company and Services sections */}
       {
         strings.footerLinks.map(section => (
           <div class="col-span-1">
@@ -39,7 +35,7 @@ const crafted: string =
               {section.section}
             </h3>
             <ul class="mt-3 grid space-y-3">
-              {section.links.map((link, index) => (
+              {section.links.map(link => (
                 <li>
                   <a
                     href={link.url}
@@ -47,11 +43,6 @@ const crafted: string =
                   >
                     {link.name}
                   </a>
-                  {section.section === 'Company' && index === 2 ? (
-                    <span class="ms-1 inline rounded-lg bg-orange-500 px-2 py-1 text-xs font-bold text-neutral-50">
-                      We're hiring!
-                    </span>
-                  ) : null}
                 </li>
               ))}
             </ul>
@@ -59,17 +50,27 @@ const crafted: string =
         ))
       }
 
-      <div class="col-span-2">
+      <div class="col-span-1">
         <h3 class="font-bold text-neutral-800 dark:text-neutral-200">
-          {sectionThreeTitle}
+          Get in touch
         </h3>
-
-        <form>
-          <EmailFooterInput />
-          <p class="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
-            {sectionThreeContent}
-          </p>
-        </form>
+        <ul
+          class="mt-3 grid space-y-3 text-sm text-neutral-600 dark:text-neutral-400"
+        >
+          <li>
+            <a
+              href="mailto:[EMAIL]"
+              class="hover:text-neutral-500 dark:hover:text-neutral-300"
+              >[EMAIL]</a>
+          </li>
+          <li>
+            <a
+              href="tel:[PHONE]"
+              class="hover:text-neutral-500 dark:hover:text-neutral-300"
+              >[PHONE]</a>
+          </li>
+          <li>[ADDRESS, CITY, STATE PIN]</li>
+        </ul>
       </div>
     </div>
 
@@ -79,38 +80,20 @@ const crafted: string =
       <div class="flex items-center justify-between">
         <p class="text-sm text-neutral-600 dark:text-neutral-400">
           © <span id="current-year"></span>
-          {SITE.title}. {crafted}
-          <a
-            class="rounded-lg font-medium underline underline-offset-2 ring-zinc-500 outline-hidden transition duration-300 hover:text-neutral-700 hover:decoration-dashed focus:outline-hidden focus-visible:ring-3 dark:ring-zinc-200 dark:hover:text-neutral-300"
-            href="https://www.gulamoff.dev/"
-            target="_blank"
-            rel="noopener noreferrer">gulamoff</a
-          >.
+          {SITE.author}. All rights reserved.
         </p>
       </div>
 
       {/* Social Brands */}
-      <div>
-        <FooterSocialLink url={strings.socialLinks.facebook}
-          ><Icon name="facebookFooter" />
-        </FooterSocialLink>
-
-        <FooterSocialLink url={strings.socialLinks.x}
-          ><Icon name="xFooter" /></FooterSocialLink
-        >
-
-        <FooterSocialLink url={strings.socialLinks.github}
-          ><Icon name="githubFooter" />
-        </FooterSocialLink>
-
-        <FooterSocialLink url={strings.socialLinks.google}
-          ><Icon name="googleFooter" />
-        </FooterSocialLink>
-
-        <FooterSocialLink url={strings.socialLinks.slack}
-          ><Icon name="slackFooter" />
-        </FooterSocialLink>
-      </div>
+      {
+        strings.socialLinks.linkedin && (
+          <div>
+            <FooterSocialLink url={strings.socialLinks.linkedin}>
+              <Icon name="linkedIn" />
+            </FooterSocialLink>
+          </div>
+        )
+      }
     </div>
 
     <script>

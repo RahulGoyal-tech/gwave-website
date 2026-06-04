@@ -1,38 +1,37 @@
-// An array of links for navigation bar
+// An array of links for the navigation bar
 const navBarLinks = [
   { name: 'Home', url: '/' },
-  { name: 'Products', url: '/products' },
   { name: 'Services', url: '/services' },
-  { name: 'Blog', url: '/blog' },
+  { name: 'About', url: '/#about' },
   { name: 'Contact', url: '/contact' },
 ];
-// An array of links for footer
+
+// An array of links for the footer
 const footerLinks = [
-  {
-    section: 'Ecosystem',
-    links: [
-      { name: 'Documentation', url: '/welcome-to-docs/' },
-      { name: 'Tools & Equipment', url: '/products' },
-      { name: 'Construction Services', url: '/services' },
-    ],
-  },
   {
     section: 'Company',
     links: [
-      { name: 'About us', url: '#' },
-      { name: 'Blog', url: '/blog' },
-      { name: 'Careers', url: '#' },
-      { name: 'Customers', url: '#' },
+      { name: 'About Us', url: '/#about' },
+      { name: 'Services', url: '/services' },
+      { name: 'Contact', url: '/contact' },
+    ],
+  },
+  {
+    section: 'Services',
+    links: [
+      { name: 'Electronics Assembly', url: '/services#electronics' },
+      { name: 'Plastic Injection Molding', url: '/services#plastic' },
+      { name: 'Testing & Programming', url: '/services#testing' },
     ],
   },
 ];
-// An object of links for social icons
+
+// An object of links for social icons.
+// Delete keys you don't use and the matching icon disappears from the footer.
 const socialLinks = {
-  facebook: 'https://www.facebook.com/',
-  x: 'https://twitter.com/',
-  github: 'https://github.com/mearashadowfax/ScrewFast',
-  google: 'https://www.google.com/',
-  slack: 'https://slack.com/',
+  linkedin: 'https://www.linkedin.com/company/gwave-innovation',
+  // facebook: '#',
+  // x: '#',
 };
 
 export default {
