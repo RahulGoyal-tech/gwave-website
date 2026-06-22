@@ -54,3 +54,4 @@ Deploy `dist/` to Vercel or Netlify (config is already in the repo).
       `ContactSection.astro` (`YOUR_WEB3FORMS_ACCESS_KEY`).
 - [ ] **Domain:** confirm `SITE.url` in `constants.ts` and `site:` in `astro.config.mjs`.
 - [ ] **Social:** update the LinkedIn URL (or add more) in `navigation.ts`.
+"# gwave-website" 
