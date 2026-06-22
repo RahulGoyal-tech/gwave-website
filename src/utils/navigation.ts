@@ -29,7 +29,7 @@ const footerLinks = [
 // An object of links for social icons.
 // Delete keys you don't use and the matching icon disappears from the footer.
 const socialLinks = {
-  linkedin: 'https://www.linkedin.com/company/gwave-innovation',
+  linkedin: 'https://www.linkedin.com/company/gwave-innovation-pvt-ltd',
   // facebook: '#',
   // x: '#',
 };

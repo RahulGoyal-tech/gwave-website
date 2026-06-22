@@ -2,24 +2,93 @@
 // Import necessary components
 import MainLayout from '@/layouts/MainLayout.astro';
 import MainSection from '@components/ui/blocks/MainSection.astro';
-import LeftSection from '@components/ui/blocks/LeftSection.astro';
-import RightSection from '@components/ui/blocks/RightSection.astro';
 import FeaturesStats from '@components/sections/features/FeaturesStats.astro';
-
-// Import imagery (swap these for your own line/PCB/molding photos)
-import blueprints from '@images/blueprints-image.avif';
-import personWorking from '@images/person-working.avif';
-import beforeAfter from '@images/before-after.avif';
-import constructionWorkers from '@images/construction-workers.avif';
-import aerialView from '@images/aerial-view.avif';
-import usingTools from '@images/using-tools.avif';
+import Icon from '@components/ui/icons/Icon.astro';
 import { SITE } from '@data/constants';
 
 const pageTitle: string = `Services | ${SITE.title}`;
 const metaDescription =
-  'Gwave Innovation provides end-to-end electronics manufacturing job work — component & PCB sourcing, SMT and manual assembly, board testing, IC programming, and box build — alongside precision plastic injection molding, all run on standardized processes.';
+  'Gwave Innovation provides end-to-end electronics manufacturing job work — PCB sourcing, SMT and manual assembly, board testing, IC programming, box build, and 3D printing — alongside precision plastic injection molding, all run on standardized processes.';
 const ogTitle =
   'Electronics Manufacturing & Plastic Injection Services | Gwave Innovation';
+
+// Six clearly separate services
+const services = [
+  {
+    icon: 'chip',
+    name: 'Component Assembly',
+    tag: 'SMT & through-hole',
+    desc: 'We assemble your PCBs end-to-end — solder-paste stencilling, automated SMT pick-and-place, and reflow — for SMD, THT, and micro-SMD parts, complemented by skilled manual assembly for mixed-technology and specialised components.',
+    provide:
+      'Gerbers / board files, BOM, components (or a sourcing brief), quantity.',
+    volume: 'Low-volume prototypes through bulk.',
+    sub: 'Includes IC Programming (on-board, verified before dispatch) and Board Testing (functional verification against your test plan).',
+  },
+  {
+    icon: 'puzzle',
+    name: 'Box Build Assembly',
+    tag: 'Finished product',
+    desc: 'We turn assembled boards into the finished product — enclosure fitting, cabling and wiring, fasteners, thermal interface, and final integration — ready to ship.',
+    provide:
+      'Product / assembly instructions, mechanical parts or specs, quantity.',
+    volume: 'Small batches to bulk.',
+  },
+  {
+    icon: 'frame',
+    name: 'PCB Sourcing',
+    tag: 'Bare boards to spec',
+    desc: 'We source bare PCBs to your exact specification from trusted board houses, quality-checked before they enter assembly.',
+    provide: 'Gerber files, board specification, quantity.',
+    volume: 'Small batches to bulk.',
+  },
+  {
+    icon: 'sparks',
+    name: '3D Printing',
+    tag: 'Rapid prototyping',
+    desc: 'Rapid prototyping and low-volume plastic parts printed directly from your 3D files, with finishing and packing.',
+    provide: '.STL / .STP files and a spec document with quantity.',
+    volume: 'One-off prototypes to small production runs.',
+  },
+  {
+    icon: 'settings',
+    name: 'Injection Molding',
+    tag: 'Bulk only',
+    desc: 'High-volume plastic parts via injection molding. We can build a new mould from your 3D design or run production from your existing mould — held to the same process discipline as our PCBA work.',
+    provide:
+      'Existing mould or a 3D design to build one from, part spec, quantity.',
+    volume: 'Bulk only (high minimum order quantity — quoted per project).',
+  },
+  {
+    icon: 'tools',
+    name: 'Component Sourcing',
+    tag: 'Coming soon',
+    soon: true,
+    desc: 'Electronic component sourcing against your BOM — on our roadmap. Talk to us about your needs and we will let you know when it goes live.',
+  },
+];
+
+const steps = [
+  {
+    n: '1',
+    title: 'Share your requirement',
+    text: 'Send us your files, specs, and quantity.',
+  },
+  {
+    n: '2',
+    title: 'We review & quote',
+    text: 'We assess the job and return a clear, final price.',
+  },
+  {
+    n: '3',
+    title: 'You approve',
+    text: 'Confirm the quote and we schedule the work.',
+  },
+  {
+    n: '4',
+    title: 'We build, QA & ship',
+    text: 'Production, quality checks, and on-time dispatch.',
+  },
+];
 ---
 
 <MainLayout
@@ -51,71 +120,141 @@ const ogTitle =
     btnURL="/contact"
   />
 
-  {/* Division A — Electronics Manufacturing (PCBA Job Work) */}
-  <div id="electronics" class="scroll-mt-24">
-    <RightSection
-      title="Electronics Manufacturing — PCBA Job Work"
-      subTitle="Full turnkey PCB assembly under one roof. We source electronic components against your BOM with attention to authenticity and lead times, and procure bare boards to your exact specifications and quality standards — or assemble using parts you supply. Then our automated SMT pick-and-place lines place fine-pitch components with consistent accuracy at any volume, complemented by skilled manual assembly for through-hole, mixed-technology, and specialized parts."
-      single={false}
-      imgOne={blueprints}
-      imgOneAlt="Gerber files and BOM under review before component sourcing"
-      imgTwo={personWorking}
-      imgTwoAlt="Engineer preparing a job for the SMT assembly line"
-    />
-  </div>
+  {/* Six services grid */}
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        services.map(s => (
+          <div
+            class={`flex flex-col rounded-2xl border p-6 ${s.soon ? 'border-dashed border-neutral-300 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800/50' : 'border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900'}`}
+          >
+            <div class="flex items-center gap-x-4">
+              <span class="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-yellow-50 dark:bg-yellow-900/30">
+                <Icon name={s.icon} />
+              </span>
+              <div>
+                <h3 class="text-lg font-semibold text-neutral-800 dark:text-neutral-200">
+                  {s.name}
+                </h3>
+                <p
+                  class={`text-xs font-semibold tracking-wide uppercase ${s.soon ? 'text-neutral-500 dark:text-neutral-400' : 'text-yellow-500 dark:text-yellow-400'}`}
+                >
+                  {s.tag}
+                </p>
+              </div>
+            </div>
 
-  {/* Testing, programming, box build */}
-  <div id="testing" class="scroll-mt-24">
-    <LeftSection
-      title="Testing, Programming & Box Build"
-      subTitle="We don't just populate boards — we verify and finish them. Functional and visual inspection confirms every board performs as intended before it ships. In-house IC and microcontroller programming means boards arrive ready to run. And full box build assembly — enclosures, wiring, and final integration — lets you ship a finished, verified product rather than just a populated PCB."
-      img={beforeAfter}
-      imgAlt="Technician performing functional board testing and final box build"
-      btnExists={true}
-      btnTitle="Discuss your build"
-      btnURL="/contact"
-    />
-  </div>
+            <p class="mt-4 text-neutral-600 dark:text-neutral-400">{s.desc}</p>
 
-  {/* Division B — Plastic Services */}
-  <div id="plastic" class="scroll-mt-24">
-    <RightSection
-      title="Plastic Injection Molding"
-      subTitle="Our plastic services division runs precision injection molding on standardized procedures for repeatable, high-quality parts and enclosures — ideal for the housings and components that pair with your electronics. Built to the same process discipline as our PCBA work, so the parts that protect your boards are held to the same standard as the boards themselves."
-      single={false}
-      imgOne={aerialView}
-      imgOneAlt="Plastic injection molding machine in operation"
-      imgTwo={usingTools}
-      imgTwoAlt="Inspection of a molded plastic enclosure"
-    />
-  </div>
+            {s.sub && (
+              <p class="mt-3 rounded-lg bg-yellow-50 px-3 py-2 text-sm text-neutral-700 dark:bg-yellow-900/20 dark:text-neutral-300">
+                <span class="font-semibold">Sub-services:</span> {s.sub}
+              </p>
+            )}
 
-  {/* Closing standardization statement */}
-  <LeftSection
-    title="Standardized Today, Self-Serve Tomorrow"
-    subTitle="We're standardizing every one of these services into clear operating procedures — and moving toward a transparent, portal-based ordering experience so you always know exactly what to expect, from quote to delivery."
-    img={constructionWorkers}
-    imgAlt="Team documenting standardized operating procedures on the factory floor"
-  />
+            {(s.provide || s.volume) && (
+              <dl class="mt-4 space-y-1.5 border-t border-neutral-100 pt-4 text-sm dark:border-neutral-800">
+                {s.provide && (
+                  <div>
+                    <dt class="inline font-semibold text-neutral-700 dark:text-neutral-300">
+                      You provide:{' '}
+                    </dt>
+                    <dd class="inline text-neutral-600 dark:text-neutral-400">
+                      {s.provide}
+                    </dd>
+                  </div>
+                )}
+                {s.volume && (
+                  <div>
+                    <dt class="inline font-semibold text-neutral-700 dark:text-neutral-300">
+                      Volume:{' '}
+                    </dt>
+                    <dd class="inline text-neutral-600 dark:text-neutral-400">
+                      {s.volume}
+                    </dd>
+                  </div>
+                )}
+              </dl>
+            )}
+
+            <div class="mt-auto pt-5">
+              {s.soon ? (
+                <span class="text-sm font-medium text-neutral-400 dark:text-neutral-500">
+                  Coming soon
+                </span>
+              ) : (
+                <a
+                  href="/contact"
+                  class="inline-flex items-center gap-x-1 text-sm font-medium text-yellow-500 hover:text-yellow-600 dark:text-yellow-400"
+                >
+                  Request a Quote
+                  <Icon name="arrowRight" />
+                </a>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  {/* How it works */}
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <div class="mx-auto mb-10 max-w-2xl text-center">
+      <h2
+        class="text-2xl font-bold text-neutral-800 md:text-3xl dark:text-neutral-200"
+      >
+        Simple, transparent ordering
+      </h2>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-400">
+        Small quantities follow a fixed, standardised pricing structure. Bulk
+        orders are custom-quoted to your requirement.
+      </p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        steps.map(st => (
+          <div class="rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-900">
+            <span class="inline-flex size-10 items-center justify-center rounded-full bg-yellow-500 font-bold text-white">
+              {st.n}
+            </span>
+            <h3 class="mt-4 text-lg font-semibold text-neutral-800 dark:text-neutral-200">
+              {st.title}
+            </h3>
+            <p class="mt-1 text-neutral-600 dark:text-neutral-400">{st.text}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <p
+      class="mx-auto mt-8 max-w-3xl rounded-xl bg-neutral-50 px-5 py-4 text-center text-sm text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400"
+    >
+      Once you're onboarded, we open a dedicated WhatsApp group for your project
+      — so every update, timeline, and approval stays transparent and on the
+      record.
+    </p>
+  </section>
 
   {/* Capability stats */}
   <FeaturesStats
     title="Built for Consistency"
     subTitle="Our commitment to process shows up in every job — the same disciplined quality whether it's your first board or your ten-thousandth."
-    mainStatTitle="8"
+    mainStatTitle="6"
     mainStatSubTitle="in-house services spanning electronics manufacturing and plastic injection"
     stats={[
       {
-        stat: '1 → Bulk',
-        description: 'prototype through high-volume production',
+        stat: 'Prototype → Bulk',
+        description: 'order sizes, from single prototypes to high-volume runs',
       },
       {
-        stat: 'SMT',
-        description: 'automated pick-and-place for fine-pitch accuracy',
+        stat: '6',
+        description: 'in-house services across electronics and plastics',
       },
       {
-        stat: '100%',
-        description: 'process-documented, inspection-backed workflow',
+        stat: 'SMT, Molding',
+        description: 'highly specialized imported machinery for accuracy',
       },
     ]}
   />

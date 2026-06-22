@@ -8,11 +8,10 @@ import FeaturesNavs from '@components/sections/features/FeaturesNavs.astro';
 import FeaturesStats from '@components/sections/features/FeaturesStats.astro';
 import FAQ from '@components/sections/misc/FAQ.astro';
 
-import heroImage from '@images/hero-image.avif';
-import featureImage from '@images/features-image.avif';
-import tools from '@images/automated-tools.avif';
-import dashboard from '@images/dashboard-image.avif';
-import construction from '@images/construction-image.avif';
+import heroImage from '@images/smt.png';
+import featureImage from '@images/injection.png';
+import electronicsImg from '@images/louis-reed-wSTCaQpiLtc-unsplash.jpg';
+import injectionImg from '@images/injection_molding_machine.jpg';
 
 import faqs from '@data/faqs.json';
 import features from '@data/features.json';
@@ -20,12 +19,12 @@ import features from '@data/features.json';
 
 <MainLayout>
   <HeroSection
-    title=`Precision Electronics Manufacturing, <span class="text-yellow-500 dark:text-yellow-400">Built on Process</span>`
-    subTitle="End-to-end PCB assembly and plastic injection job work — from your first prototype to full-scale production, with consistent quality at every stage."
-    primaryBtn="Explore Our Services"
-    primaryBtnURL="/services"
-    secondaryBtn="Contact Us"
-    secondaryBtnURL="/contact"
+    title=`Electronics manufacturing, <span class="text-yellow-500 dark:text-yellow-400">built on process — not luck</span>.`
+    subTitle="End-to-end electronic assembly and plastic injection molding job-work — standardised, on-time, and transparent, from your first prototype to full production."
+    primaryBtn="Get a Quote"
+    primaryBtnURL="/contact"
+    secondaryBtn="Explore Services"
+    secondaryBtnURL="/services"
     withReview={false}
     src={heroImage}
     alt="Automated SMT pick-and-place line assembling a printed circuit board"
@@ -33,42 +32,84 @@ import features from '@data/features.json';
 
   <div id="about">
     <FeaturesGeneral
-      title="Different by Design: We Standardize Everything"
-      subTitle="Most job-work shops rely on tribal knowledge. Gwave runs on defined, repeatable processes — so the quality you see in your prototype is the quality you get in your 10,000th unit. We're building standardized operating procedures for PCB and plastic injection services, moving toward a fully transparent, portal-driven ordering experience."
+      title="Different by design: we standardise everything"
+      subTitle="Gwave Innovation Pvt. Ltd. delivers end-to-end job-work across two domains — electronic assembly and plastic injection molding. Most job-work shops rely on tribal knowledge; we run every service on defined, repeatable procedures — so the quality you see in your prototype is the quality you get in your 10,000th unit, from the first board to the final shipped product."
       src={featureImage}
       alt="Engineer reviewing a standardized assembly process document on the factory floor"
       features={features}
     />
   </div>
 
+  {/* Mission & Vision */}
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <div class="grid gap-6 md:grid-cols-2">
+      <div
+        class="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 md:p-8 dark:border-neutral-700 dark:bg-neutral-800"
+      >
+        <h3
+          class="text-xl font-semibold text-neutral-800 dark:text-neutral-200"
+        >
+          Our Mission
+        </h3>
+        <p class="mt-3 text-neutral-600 dark:text-neutral-400">
+          To deliver reliable, high-quality electronics and plastic injection
+          molding services through standardised, repeatable processes —
+          guaranteeing consistency, on-time delivery, and complete data
+          integrity for every order, regardless of volume.
+        </p>
+      </div>
+      <div
+        class="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 md:p-8 dark:border-neutral-700 dark:bg-neutral-800"
+      >
+        <h3
+          class="text-xl font-semibold text-neutral-800 dark:text-neutral-200"
+        >
+          Our Vision
+        </h3>
+        <p class="mt-3 text-neutral-600 dark:text-neutral-400">
+          To redefine job-work manufacturing in India by building fully
+          standardised, transparent, process-driven systems — letting customers
+          move from prototype to production seamlessly, with predictable quality
+          and effortless ordering.
+        </p>
+      </div>
+    </div>
+
+    {/* Philosophy band */}
+    <div class="mt-6 rounded-2xl bg-yellow-500 p-6 md:p-10 dark:bg-yellow-600">
+      <p class="text-lg font-medium text-white md:text-xl lg:text-2xl">
+        Great manufacturing is built on great processes — not luck. By
+        standardising every step and investing in specialised machines and
+        skilled people, we make quality repeatable, delivery dependable, and
+        trust the default.
+      </p>
+      <p class="mt-4 text-sm font-medium tracking-wide text-white/80 uppercase">
+        Repeatable quality &nbsp;·&nbsp; Dependable delivery &nbsp;·&nbsp; Trust
+        by default
+      </p>
+    </div>
+  </section>
+
   <FeaturesNavs
     title=`Two divisions, one standard of <span class="text-yellow-500 dark:text-yellow-400">quality</span>.`
     tabs={[
       {
-        heading: 'Electronics Assembly (PCBA)',
+        heading: 'Electronics',
         content:
-          'Full turnkey PCB assembly: component and PCB sourcing, automated SMT pick-and-place, and manual assembly. We handle everything from prototype boards to bulk production with consistent, inspection-backed quality.',
+          'Full turnkey PCB assembly: PCB sourcing, automated SMT pick-and-place, and manual assembly — plus board testing, IC programming, and complete box build. From prototype boards to bulk production, with consistent, inspection-backed quality.',
         svg: 'chip',
-        src: tools,
-        alt: 'Automated pick-and-place machine placing components on a PCB',
+        src: electronicsImg,
+        alt: 'Gwave electronics assembly — SMT, testing, and box build',
         first: true,
       },
       {
-        heading: 'Plastic Injection Molding',
+        heading: 'Injection Molding',
         content:
-          'Precision plastic injection molding services, run on standardized procedures for repeatable parts. Ideal for enclosures and components that pair with your electronics — built to the same process discipline.',
+          'Precision plastic injection molding, run on standardized procedures for repeatable parts. Ideal for the enclosures and components that pair with your electronics — built to the same process discipline, for bulk production.',
         svg: 'settings',
-        src: dashboard,
-        alt: 'Plastic injection molding machine producing precision parts',
+        src: injectionImg,
+        alt: 'Gwave precision plastic injection molding',
         second: true,
-      },
-      {
-        heading: 'Testing, Programming & Box Build',
-        content:
-          'Board testing, IC programming, and complete box build assembly — so you can ship a finished, verified product, not just a populated board.',
-        svg: 'badge-check',
-        src: construction,
-        alt: 'Technician performing functional board testing',
       },
     ]}
   />
@@ -80,16 +121,16 @@ import features from '@data/features.json';
     mainStatSubTitle="of our workflow is process-documented and inspection-backed — from your first board to your ten-thousandth"
     stats={[
       {
-        stat: '1 → Bulk',
+        stat: 'Prototype → Bulk',
         description: 'order sizes, from single prototypes to high-volume runs',
       },
       {
-        stat: '8',
+        stat: '6',
         description: 'in-house services across electronics and plastics',
       },
       {
-        stat: 'SMT',
-        description: 'automated pick-and-place for fine-pitch accuracy',
+        stat: 'SMT, Molding',
+        description: 'highly specialized imported machinery for accuracy',
       },
     ]}
   />
@@ -97,8 +138,8 @@ import features from '@data/features.json';
   <FAQ title="Frequently<br />asked questions" faqs={faqs} />
 
   <HeroSectionAlt
-    title="Let's Build It Right"
-    subTitle="Tell us about your project — prototype or production, electronics or plastics. Our team will help you get from design to delivery with a process you can rely on."
+    title="Let's build it together."
+    subTitle="Tell us what you need — prototype or production, electronics or plastics — and we'll get you a quote."
     url="/contact"
   />
 </MainLayout>

@@ -1,67 +1,33 @@
 ---
-// Gwave Innovation brand logo — concentric "wifi arc" mark (deep + sky blue)
-// with the "Gwave Innovation" wordmark. Wordmark color adapts to light/dark.
-//
-// To use your official artwork instead, replace this whole SVG with:
-//   <img src="/gwave-logo.png" alt="Gwave Innovation" {...Astro.props} />
-// (and a white variant in the footer).
-const { class: className, ...rest } = Astro.props;
+// Gwave Innovation — official logo (your uploaded artwork).
+// Shows the navy logo on light backgrounds and the white logo on dark — so it
+// stays visible in both the header and footer, in light and dark mode.
+// Pass `white` to force the white version (e.g. always-dark surfaces).
+const { class: className, white = false, ...rest } = Astro.props;
 ---
 
-<svg
-  class={className}
-  viewBox="0 0 520 150"
-  fill="none"
-  role="img"
-  aria-label="Gwave Innovation"
-  {...rest}
->
-  <title>Gwave Innovation</title>
-
-  {/* Concentric arc mark — opens to the right, echoing the logo */}
-  <g transform="translate(8 0)">
-    {/* Outer arc — deep brand blue */}
-    <path
-      d="M118 75a43 43 0 1 0 -12.6 30.4"
-      fill="none"
-      stroke="#0F76BC"
-      stroke-width="16"
-      stroke-linecap="round"></path>
-    {/* Middle arc — sky blue */}
-    <path
-      d="M93 75a18 18 0 1 0 -5.3 12.7"
-      fill="none"
-      stroke="#36A9E1"
-      stroke-width="14"
-      stroke-linecap="round"></path>
-    {/* Lower sweep — sky blue, mirrors the logo's open "C" */}
-    <path
-      d="M118 75a43 43 0 0 1 -12.6 30.4"
-      fill="none"
-      stroke="#36A9E1"
-      stroke-width="16"
-      stroke-linecap="round"></path>
-    {/* Center dot */}
-    <circle cx="75" cy="75" r="8" fill="#0F76BC"></circle>
-  </g>
-
-  {/* Wordmark */}
-  <text
-    x="150"
-    y="65"
-    font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    font-size="52"
-    font-weight="600"
-    letter-spacing="-1"
-    class="fill-neutral-800 dark:fill-neutral-100">Gwave</text
-  >
-  <text
-    x="150"
-    y="120"
-    font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    font-size="44"
-    font-weight="400"
-    letter-spacing="-0.5"
-    class="fill-neutral-700 dark:fill-neutral-300">Innovation</text
-  >
-</svg>
+{
+  white ? (
+    <img
+      src="/gwave_logo_white.png"
+      alt="Gwave Innovation"
+      class={className}
+      {...rest}
+    />
+  ) : (
+    <>
+      <img
+        src="/gwave_logo_navy.png"
+        alt="Gwave Innovation"
+        class={`${className ?? ''} block dark:hidden`}
+        {...rest}
+      />
+      <img
+        src="/gwave_logo_white.png"
+        alt="Gwave Innovation"
+        class={`${className ?? ''} hidden dark:block`}
+        {...rest}
+      />
+    </>
+  )
+}

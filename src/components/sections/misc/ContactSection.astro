@@ -42,15 +42,16 @@ const submitClasses =
         </h2>
         {
           /* Static sites need a form handler. This form is wired for Web3Forms:
-             1. Create a free access key at https://web3forms.com
-             2. Replace YOUR_WEB3FORMS_ACCESS_KEY below with it.
+             1. Create a free access key at https://web3forms.com using the
+                sales@gwaveinnovation.com inbox (that inbox receives submissions).
+             2. Replace YOUR_WEB3FORMS_ACCESS_KEY below with that key.
              No backend code required. */
         }
         <form action="https://api.web3forms.com/submit" method="POST">
           <input
             type="hidden"
             name="access_key"
-            value="YOUR_WEB3FORMS_ACCESS_KEY"
+            value="12f7afb6-ad5d-4d70-a1fa-2b857fa41ee1"
           />
           <input
             type="hidden"
@@ -72,9 +73,32 @@ const submitClasses =
             </div>
             <EmailContactInput id="hs-email-contacts" />
             <PhoneInput id="hs-phone-number" />
+            <div>
+              <label
+                for="hs-service-contacts"
+                class="mb-2 block text-sm font-medium text-neutral-700 dark:text-white"
+                >Service needed</label
+              >
+              <select
+                id="hs-service-contacts"
+                name="service"
+                class="block w-full rounded-lg border-neutral-200 px-4 py-3 text-sm focus:border-yellow-500 focus:ring-yellow-500 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400"
+              >
+                <option selected value="">Select a service…</option>
+                <option value="Component Assembly">Component Assembly</option>
+                <option value="Box Build Assembly">Box Build Assembly</option>
+                <option value="PCB Sourcing">PCB Sourcing</option>
+                <option value="3D Printing">3D Printing</option>
+                <option value="Injection Molding">Injection Molding</option>
+                <option value="IC Programming & Testing"
+                  >IC Programming & Testing</option
+                >
+                <option value="Other / Not sure">Other / Not sure</option>
+              </select>
+            </div>
             <TextAreaInput
               id="hs-about-contacts"
-              label="Project details (volume, services needed, timeline)"
+              label="Project details (volume, quantity, timeline) — and attach Gerbers / STL / specs by email"
               name="message"
             />
           </div>
@@ -95,10 +119,10 @@ const submitClasses =
       <div class="divide-y divide-neutral-300 dark:divide-neutral-700">
         <ContactIconBlock
           heading="Email us your files"
-          content="To request a quote, email your BOM and Gerber files to"
+          content="To request a quote, email your project files to"
           isLinkVisible={true}
-          linkTitle="[EMAIL]"
-          linkURL="mailto:[EMAIL]"
+          linkTitle="sales@gwaveinnovation.com"
+          linkURL="mailto:sales@gwaveinnovation.com"
           ><Icon name="envelopeOpen" />
         </ContactIconBlock>
 
@@ -106,22 +130,18 @@ const submitClasses =
           heading="Call us"
           content="Speak with our team directly during business hours"
           isLinkVisible={true}
-          linkTitle="[PHONE]"
-          linkURL="tel:[PHONE]"
+          linkTitle="+91 92117 05237"
+          linkURL="tel:+919211705237"
           ><Icon name="chatBubble" />
         </ContactIconBlock>
 
-        <ContactIconBlock
-          heading="Visit our facility"
-          content="Gwave Innovation Pvt. Ltd."
-          isAddressVisible={true}
-          addressContent="[ADDRESS, CITY, STATE PIN]"
+        <ContactIconBlock heading="Location" content="Delhi, India"
           ><Icon name="mapPin" />
         </ContactIconBlock>
 
         <ContactIconBlock
           heading="Business hours"
-          content="[e.g. Mon–Sat, 9:30 AM – 6:30 PM]"
+          content="Mon–Fri, 9:30 AM – 6:30 PM"
           ><Icon name="question" />
         </ContactIconBlock>
       </div>
